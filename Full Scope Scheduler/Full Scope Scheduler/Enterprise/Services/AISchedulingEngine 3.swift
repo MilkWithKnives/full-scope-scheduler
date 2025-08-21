@@ -3,8 +3,6 @@ import Combine
 
 // Type aliases to resolve ambiguity with basic models
 typealias BasicSchedule = Schedule
-typealias BasicEmployee = Employee
-typealias BasicShift = Shift
 
 /// Advanced AI-powered scheduling engine inspired by enterprise workforce management systems
 @MainActor
@@ -453,7 +451,7 @@ class AISchedulingEngine: ObservableObject {
         return []
     }
     
-    private func findEligibleEmployees(for shift: BasicShift, in employees: [BasicEmployee]) -> [BasicEmployee] {
+    private func findEligibleEmployees(for shift: Shift, in employees: [Employee]) -> [Employee] {
         return employees.filter { employee in
             // Check availability, skills, etc.
             return true // Simplified
@@ -487,19 +485,19 @@ class AISchedulingEngine: ObservableObject {
         return nil // Simplified
     }
     
-    private func calculateOptimizationScore(_ schedule: Schedule?) -> Double {
+    private func calculateOptimizationScore(_ schedule: BasicSchedule?) -> Double {
         return 0.85 // Simplified
     }
     
-    private func calculateLaborCosts(_ schedule: BasicSchedule?, request: ScheduleGenerationRequest) -> LaborCostAnalysis {
+    private func calculateLaborCosts(_ schedule: Schedule?, request: ScheduleGenerationRequest) -> LaborCostAnalysis {
         return LaborCostAnalysis(totalCost: 5000, currency: "USD")
     }
     
-    private func validateConstraints(_ schedule: BasicSchedule?, constraints: SchedulingConstraints) -> [ConstraintViolation] {
+    private func validateConstraints(_ schedule: Schedule?, constraints: SchedulingConstraints) -> [ConstraintViolation] {
         return [] // Simplified
     }
     
-    private func calculateEmployeeSatisfaction(_ schedule: BasicSchedule?) -> Double {
+    private func calculateEmployeeSatisfaction(_ schedule: Schedule?) -> Double {
         return 0.82 // Simplified
     }
 }
@@ -511,8 +509,8 @@ struct ScheduleGenerationRequest {
     let locationId: UUID
     let startDate: Date
     let endDate: Date
-    let employees: [BasicEmployee]
-    let requiredShifts: [BasicShift]
+    let employees: [Employee]
+    let requiredShifts: [Shift]
     let constraints: [String: Any] = [:]
     let preferences: SchedulingPreferences = SchedulingPreferences()
 }
@@ -525,7 +523,7 @@ struct SchedulingPreferences {
 }
 
 struct ScheduleGenerationResult {
-    let schedule: BasicSchedule?
+    let schedule: Schedule?
     let optimizationScore: Double
     let laborCostAnalysis: LaborCostAnalysis
     let constraintViolations: [ConstraintViolation]

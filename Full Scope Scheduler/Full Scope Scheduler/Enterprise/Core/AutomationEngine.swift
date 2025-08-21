@@ -731,8 +731,8 @@ class AutomationEngine: ObservableObject {
         // Implementation would alert managers
     }
     
-    private func optimizeStaffingLevels() async -> OptimizationResult {
-        return OptimizationResult(success: true, details: [:])
+    private func optimizeStaffingLevels() async -> AutomationOptimizationResult {
+        return AutomationOptimizationResult(success: true, details: [:])
     }
     
     private func generateScheduleAdjustmentSuggestions() async -> [ScheduleAdjustment] {
@@ -1107,7 +1107,7 @@ struct CoverageOption {
     let id: UUID
 }
 
-struct OptimizationResult {
+struct AutomationOptimizationResult {
     let success: Bool
     let details: [String: Any]
 }

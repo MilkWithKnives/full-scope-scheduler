@@ -95,10 +95,10 @@ class AdvancedSchedulingEngine: ObservableObject {
     private func runParallelOptimizations(
         request: AdvancedScheduleRequest,
         session: OptimizationSession
-    ) async -> [OptimizationResult] {
+    ) async -> [AdvancedOptimizationResult] {
         
-        return await withTaskGroup(of: OptimizationResult.self) { group in
-            var results: [OptimizationResult] = []
+        return await withTaskGroup(of: AdvancedOptimizationResult.self) { group in
+            var results: [AdvancedOptimizationResult] = []
             
             // Run each optimization engine in parallel
             for engine in optimizationEngines {
@@ -123,9 +123,9 @@ class AdvancedSchedulingEngine: ObservableObject {
     // MARK: - Machine Learning Enhancement
     
     private func enhanceWithMachineLearning(
-        _ result: OptimizationResult,
+        _ result: AdvancedOptimizationResult,
         request: AdvancedScheduleRequest
-    ) async -> OptimizationResult {
+    ) async -> AdvancedOptimizationResult {
         
         guard let mlModel = mlModel else { return result }
         
@@ -153,7 +153,7 @@ class AdvancedSchedulingEngine: ObservableObject {
             // Recalculate fitness with improvements
             let improvedFitness = calculateAdvancedFitness(improvedSchedule, request: request)
             
-            return OptimizationResult(
+            return AdvancedOptimizationResult(
                 schedule: improvedSchedule,
                 fitnessScore: improvedFitness,
                 algorithm: .machineLearning,
@@ -404,7 +404,7 @@ class AdvancedSchedulingEngine: ObservableObject {
     // MARK: - Advanced Helper Methods
     
     private func extractFeatures(
-        from result: OptimizationResult,
+        from result: AdvancedOptimizationResult,
         request: AdvancedScheduleRequest
     ) -> MLFeatures {
         return MLFeatures(
@@ -573,14 +573,14 @@ class AdvancedSchedulingEngine: ObservableObject {
 // MARK: - Supporting Classes and Protocols
 
 protocol OptimizationEngine {
-    func optimize(request: AdvancedScheduleRequest, session: OptimizationSession) async -> OptimizationResult
+    func optimize(request: AdvancedScheduleRequest, session: OptimizationSession) async -> AdvancedOptimizationResult
 }
 
 // Genetic Algorithm Engine
 class GeneticAlgorithmEngine: OptimizationEngine {
-    func optimize(request: AdvancedScheduleRequest, session: OptimizationSession) async -> OptimizationResult {
+    func optimize(request: AdvancedScheduleRequest, session: OptimizationSession) async -> AdvancedOptimizationResult {
         // Advanced genetic algorithm implementation
-        return OptimizationResult(
+        return AdvancedOptimizationResult(
             schedule: AdvancedSchedule(),
             fitnessScore: 85.0,
             algorithm: .genetic,
@@ -592,9 +592,9 @@ class GeneticAlgorithmEngine: OptimizationEngine {
 
 // Simulated Annealing Engine
 class SimulatedAnnealingEngine: OptimizationEngine {
-    func optimize(request: AdvancedScheduleRequest, session: OptimizationSession) async -> OptimizationResult {
+    func optimize(request: AdvancedScheduleRequest, session: OptimizationSession) async -> AdvancedOptimizationResult {
         // Simulated annealing implementation
-        return OptimizationResult(
+        return AdvancedOptimizationResult(
             schedule: AdvancedSchedule(),
             fitnessScore: 82.0,
             algorithm: .simulatedAnnealing,
@@ -606,9 +606,9 @@ class SimulatedAnnealingEngine: OptimizationEngine {
 
 // Particle Swarm Optimization Engine
 class ParticleSwarmEngine: OptimizationEngine {
-    func optimize(request: AdvancedScheduleRequest, session: OptimizationSession) async -> OptimizationResult {
+    func optimize(request: AdvancedScheduleRequest, session: OptimizationSession) async -> AdvancedOptimizationResult {
         // Particle swarm optimization implementation
-        return OptimizationResult(
+        return AdvancedOptimizationResult(
             schedule: AdvancedSchedule(),
             fitnessScore: 88.0,
             algorithm: .particleSwarm,
@@ -620,8 +620,8 @@ class ParticleSwarmEngine: OptimizationEngine {
 
 // Tabu Search Engine
 class TabuSearchEngine: OptimizationEngine {
-    func optimize(request: AdvancedScheduleRequest, session: OptimizationSession) async -> OptimizationResult {
-        return OptimizationResult(
+    func optimize(request: AdvancedScheduleRequest, session: OptimizationSession) async -> AdvancedOptimizationResult {
+        return AdvancedOptimizationResult(
             schedule: AdvancedSchedule(),
             fitnessScore: 83.0,
             algorithm: .tabuSearch,
@@ -633,8 +633,8 @@ class TabuSearchEngine: OptimizationEngine {
 
 // Ant Colony Optimization Engine
 class AntColonyEngine: OptimizationEngine {
-    func optimize(request: AdvancedScheduleRequest, session: OptimizationSession) async -> OptimizationResult {
-        return OptimizationResult(
+    func optimize(request: AdvancedScheduleRequest, session: OptimizationSession) async -> AdvancedOptimizationResult {
+        return AdvancedOptimizationResult(
             schedule: AdvancedSchedule(),
             fitnessScore: 86.0,
             algorithm: .antColony,
@@ -646,8 +646,8 @@ class AntColonyEngine: OptimizationEngine {
 
 // Neural Network Engine
 class NeuralNetworkEngine: OptimizationEngine {
-    func optimize(request: AdvancedScheduleRequest, session: OptimizationSession) async -> OptimizationResult {
-        return OptimizationResult(
+    func optimize(request: AdvancedScheduleRequest, session: OptimizationSession) async -> AdvancedOptimizationResult {
+        return AdvancedOptimizationResult(
             schedule: AdvancedSchedule(),
             fitnessScore: 91.0,
             algorithm: .neuralNetwork,
@@ -665,10 +665,10 @@ class HybridOptimizer {
         self.engines = engines
     }
     
-    func combineResults(_ results: [OptimizationResult], request: AdvancedScheduleRequest) async -> OptimizationResult {
+    func combineResults(_ results: [AdvancedOptimizationResult], request: AdvancedScheduleRequest) async -> AdvancedOptimizationResult {
         // Ensemble method combining the best aspects of multiple algorithms
         guard !results.isEmpty else {
-            return OptimizationResult(
+            return AdvancedOptimizationResult(
                 schedule: AdvancedSchedule(),
                 fitnessScore: 0.0,
                 algorithm: .hybrid,
@@ -680,7 +680,7 @@ class HybridOptimizer {
         // Take the best result and enhance it using insights from others
         let bestResult = results.first! // Already sorted by fitness score
         
-        return OptimizationResult(
+        return AdvancedOptimizationResult(
             schedule: bestResult.schedule,
             fitnessScore: bestResult.fitnessScore + 5.0, // Bonus for hybrid approach
             algorithm: .hybrid,
@@ -692,7 +692,7 @@ class HybridOptimizer {
 
 // Reinforcement Learning Component
 class ReinforcementLearner {
-    func optimize(_ result: OptimizationResult, request: AdvancedScheduleRequest) async -> OptimizationResult {
+    func optimize(_ result: AdvancedOptimizationResult, request: AdvancedScheduleRequest) async -> AdvancedOptimizationResult {
         // Reinforcement learning adjustments
         return result
     }
@@ -704,7 +704,7 @@ class ReinforcementLearner {
 
 // Pattern Recognition Component
 class PatternRecognizer {
-    func validateAndImprove(_ result: OptimizationResult, request: AdvancedScheduleRequest) async -> OptimizationResult {
+    func validateAndImprove(_ result: AdvancedOptimizationResult, request: AdvancedScheduleRequest) async -> AdvancedOptimizationResult {
         // Pattern-based validation and improvement
         return result
     }
@@ -721,7 +721,7 @@ class PatternRecognizer {
 
 // Performance Predictor Component
 class PerformancePredictor {
-    func analyzeAndOptimize(_ result: OptimizationResult, request: AdvancedScheduleRequest) async -> AdvancedScheduleResult {
+    func analyzeAndOptimize(_ result: AdvancedOptimizationResult, request: AdvancedScheduleRequest) async -> AdvancedScheduleResult {
         // Final performance prediction and optimization
         return AdvancedScheduleResult(
             optimizationResult: result,
@@ -791,7 +791,7 @@ struct AdvancedSchedule {
     }
 }
 
-struct OptimizationResult {
+struct AdvancedAdvancedOptimizationResult {
     let schedule: AdvancedSchedule
     let fitnessScore: Double
     let algorithm: OptimizationAlgorithm
@@ -800,7 +800,7 @@ struct OptimizationResult {
 }
 
 struct AdvancedScheduleResult {
-    let optimizationResult: OptimizationResult
+    let optimizationResult: AdvancedAdvancedOptimizationResult
     let predictedPerformance: Double
     let confidenceInterval: Double
     let riskAssessment: RiskLevel
