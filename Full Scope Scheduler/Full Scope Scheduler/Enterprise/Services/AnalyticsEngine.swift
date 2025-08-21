@@ -1,6 +1,12 @@
 import Foundation
 import Combine
 import Charts
+import SwiftUI
+
+// Type aliases to resolve ambiguity with basic models
+typealias AnalyticsEmployee = Employee
+typealias AnalyticsShift = Shift
+typealias AnalyticsWeekday = Weekday
 
 /// Advanced analytics and business intelligence engine for workforce management
 @MainActor
@@ -76,7 +82,7 @@ class AnalyticsEngine: ObservableObject {
             
             // Calculate variance against budget
             let budget = await fetchLaborBudget(for: locationId, period: period)
-            let variance = totalCost - (budget?.totalbudget ?? 0)
+            let variance = totalCost - (budget?.weeklyBudget ?? 0)
             
             return LaborCostAnalysis(
                 totalCost: totalCost,
@@ -251,7 +257,7 @@ class AnalyticsEngine: ObservableObject {
     private func analyzePeakHours() async -> PeakHoursAnalysis {
         // Analyze when the business is busiest
         return PeakHoursAnalysis(
-            peakDays: [.friday, .saturday],
+            peakDays: [AnalyticsWeekday.friday, AnalyticsWeekday.saturday],
             peakHours: [(18, 22)], // 6 PM - 10 PM
             lowActivityPeriods: [(2, 6)] // 2 AM - 6 AM
         )
@@ -562,33 +568,5 @@ struct TrendAnalysis {
     let growthRate: Double
 }
 
-// Enhanced LaborCostAnalysis with additional analytics
-extension LaborCostAnalysis {
-    init(
-        totalCost: Decimal,
-        currency: String,
-        breakdown: [String: Decimal] = [:],
-        savings: Decimal? = nil,
-        overtimeCost: Decimal = 0,
-        dailyBreakdown: [Date: Decimal] = [:],
-        trendData: [LaborCostDataPoint] = [],
-        budgetVariance: Decimal = 0,
-        period: DateInterval
-    ) {
-        self.totalCost = totalCost
-        self.currency = currency
-        self.breakdown = breakdown
-        self.savings = savings
-        self.overtimeCost = overtimeCost
-        self.dailyBreakdown = dailyBreakdown
-        self.trendData = trendData
-        self.budgetVariance = budgetVariance
-        self.period = period
-    }
-    
-    let overtimeCost: Decimal
-    let dailyBreakdown: [Date: Decimal]
-    let trendData: [LaborCostDataPoint]
-    let budgetVariance: Decimal
-    let period: DateInterval
-}
+// Note: Enhanced LaborCostAnalysis extension removed to fix compilation errors
+// Extensions cannot contain stored properties
