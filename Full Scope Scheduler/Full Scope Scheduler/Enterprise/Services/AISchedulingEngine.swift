@@ -487,7 +487,7 @@ class AISchedulingEngine: ObservableObject {
         return nil // Simplified
     }
     
-    private func calculateOptimizationScore(_ schedule: Schedule?) -> Double {
+    private func calculateOptimizationScore(_ schedule: BasicSchedule?) -> Double {
         return 0.85 // Simplified
     }
     
