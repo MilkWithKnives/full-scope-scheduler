@@ -3,6 +3,9 @@ import CloudKit
 import Combine
 import SwiftUI
 
+// Type alias to resolve ambiguity with basic models
+typealias DataServiceEmployee = Employee
+
 /// Enterprise-grade multi-tenant data service with CloudKit backend
 @MainActor
 class DataService: ObservableObject {

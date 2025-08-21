@@ -50,7 +50,7 @@ class AnalyticsEngine: ObservableObject {
                 endDate: period.end
             )
             
-            let employees = try await dataService.fetchEmployees()
+            let employees: [AnalyticsEmployee] = try await dataService.fetchEmployees()
             
             // Calculate comprehensive labor costs
             var totalCost: Decimal = 0
@@ -87,26 +87,19 @@ class AnalyticsEngine: ObservableObject {
             return LaborCostAnalysis(
                 totalCost: totalCost,
                 currency: "USD",
-                breakdown: breakdown,
-                savings: variance < 0 ? abs(variance) : nil,
-                overtimeCost: overtimeCost,
-                dailyBreakdown: dailyBreakdown,
-                trendData: trendData,
-                budgetVariance: variance,
-                period: period
+                savings: variance < 0 ? abs(variance) : nil
             )
             
         } catch {
             // Return empty analysis on error
             return LaborCostAnalysis(
                 totalCost: 0,
-                currency: "USD",
-                period: period
+                currency: "USD"
             )
         }
     }
     
-    private func calculateShiftCost(_ shift: Shift, employees: [Employee]) -> (total: Decimal, overtime: Decimal) {
+    private func calculateShiftCost(_ shift: AnalyticsShift, employees: [AnalyticsEmployee]) -> (total: Decimal, overtime: Decimal) {
         var totalCost: Decimal = 0
         var overtimeCost: Decimal = 0
         
@@ -492,7 +485,7 @@ struct ProductivityInsights {
 }
 
 struct PeakHoursAnalysis {
-    let peakDays: [Weekday]
+    let peakDays: [AnalyticsWeekday]
     let peakHours: [(start: Int, end: Int)]
     let lowActivityPeriods: [(start: Int, end: Int)]
 }
