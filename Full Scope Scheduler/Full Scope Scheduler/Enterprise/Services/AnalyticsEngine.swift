@@ -76,7 +76,7 @@ class AnalyticsEngine: ObservableObject {
             
             // Calculate variance against budget
             let budget = await fetchLaborBudget(for: locationId, period: period)
-            let variance = totalCost - (budget?.totalBudget ?? 0)
+            let variance = totalCost - (budget?.totalbudget ?? 0)
             
             return LaborCostAnalysis(
                 totalCost: totalCost,
