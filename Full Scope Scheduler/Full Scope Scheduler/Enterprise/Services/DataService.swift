@@ -12,8 +12,8 @@ class DataService: ObservableObject {
     
     // MARK: - Published Properties
     @Published var currentOrganization: Organization?
-    @Published var currentUser: Employee?
-    @Published var employees: [Employee] = []
+    @Published var currentUser: DataServiceEmployee?
+    @Published var employees: [DataServiceEmployee] = []
     @Published var locations: [Location] = []
     @Published var departments: [Department] = []
     @Published var schedules: [Schedule] = []
@@ -56,7 +56,7 @@ class DataService: ObservableObject {
     
     // MARK: - Authentication & Organization Setup
     
-    func authenticateUser() async throws -> Employee? {
+    func authenticateUser() async throws -> DataServiceEmployee? {
         do {
             let accountStatus = try await container.accountStatus()
             
@@ -107,7 +107,7 @@ class DataService: ObservableObject {
     
     // MARK: - Employee Management
     
-    func createEmployee(_ employee: Employee) async throws {
+    func createEmployee(_ employee: DataServiceEmployee) async throws {
         guard let orgId = currentOrganization?.id else {
             throw DataServiceError.noOrganization
         }
@@ -131,7 +131,7 @@ class DataService: ObservableObject {
         }
     }
     
-    func updateEmployee(_ employee: Employee) async throws {
+    func updateEmployee(_ employee: DataServiceEmployee) async throws {
         isLoading = true
         defer { isLoading = false }
         
@@ -168,14 +168,14 @@ class DataService: ObservableObject {
         }
     }
     
-    func fetchEmployees(for organizationId: UUID? = nil) async throws -> [Employee] {
+    func fetchEmployees(for organizationId: UUID? = nil) async throws -> [DataServiceEmployee] {
         let orgId = organizationId ?? currentOrganization?.id
         guard let orgId = orgId else {
             throw DataServiceError.noOrganization
         }
         
         let cacheKey = "employees_\(orgId.uuidString)"
-        if let cachedEmployees: [Employee] = getCachedData(for: cacheKey) {
+        if let cachedEmployees: [DataServiceEmployee] = getCachedData(for: cacheKey) {
             return cachedEmployees
         }
         
@@ -190,7 +190,7 @@ class DataService: ObservableObject {
             let employees = try result.matchResults.compactMap { _, result in
                 try result.get()
             }.compactMap { record in
-                try? extractModel(Employee.self, from: record)
+                try? extractModel(DataServiceEmployee.self, from: record)
             }
             
             setCachedData(employees, for: cacheKey)
@@ -441,7 +441,7 @@ class DataService: ObservableObject {
         }
     }
     
-    private func fetchCurrentUser() async throws -> Employee {
+    private func fetchCurrentUser() async throws -> DataServiceEmployee {
         // Fetch current user from CloudKit
         // This would typically involve fetching by CloudKit user record ID
         throw DataServiceError.notImplemented
@@ -567,7 +567,7 @@ struct LaborCostReport {
     let costPerHour: Decimal
     let overtimeCost: Decimal
     
-    static func generate(from schedules: [Schedule], employees: [Employee], period: DateInterval) -> LaborCostReport {
+    static func generate(from schedules: [Schedule], employees: [DataServiceEmployee], period: DateInterval) -> LaborCostReport {
         // Implementation for generating labor cost report
         return LaborCostReport(
             locationId: UUID(),
