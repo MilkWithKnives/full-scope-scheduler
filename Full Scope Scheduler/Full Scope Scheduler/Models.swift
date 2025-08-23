@@ -6,8 +6,18 @@ struct Employee: Identifiable, Codable, Hashable {
     var name: String
     var maxHoursPerWeek: Int = 40
     var roles: [String] = []
-    var availability: [Weekday: [TimeRange]] = Weekday.allCases.reduce(into: [:]) { dict, day in
-        dict[day] = []
+    var availability: [Weekday: [TimeRange]] = [:]
+    
+    init(name: String, maxHoursPerWeek: Int = 40, roles: [String] = []) {
+        self.id = UUID()
+        self.name = name
+        self.maxHoursPerWeek = maxHoursPerWeek
+        self.roles = roles
+        
+        // Initialize availability with empty arrays for each day
+        for day in Weekday.allCases {
+            self.availability[day] = []
+        }
     }
 }
 
@@ -40,12 +50,21 @@ struct ShiftDefinition: Codable {
 
 struct ScheduleSettings: Codable {
     var weekStart: Weekday = .mon
-    var templates: [Weekday: [ShiftDefinition]] = Weekday.allCases.reduce(into: [:]) { dict, day in
-        dict[day] = [ShiftDefinition(startHour: 9, endHour: 17, requiredStaff: 2, role: nil)]
-    }
+    var templates: [Weekday: [ShiftDefinition]] = [:]
     var defaultShiftLengthHours: Int = 8
     /// Minimum rest between two shifts (hours).
     var minRestHours: Int = 10
+    
+    init() {
+        self.weekStart = .mon
+        self.defaultShiftLengthHours = 8
+        self.minRestHours = 10
+        
+        // Initialize templates with default shifts for each day
+        for day in Weekday.allCases {
+            self.templates[day] = [ShiftDefinition(startHour: 9, endHour: 17, requiredStaff: 2, role: nil)]
+        }
+    }
 }
 
 struct Shift: Identifiable, Codable, Hashable {

@@ -3,8 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 90;
 	objects = {
+
+/* Begin PBXBuildFile section */
+		4A4681C52E5908290012A316 /* CoreModels in Frameworks */ = {isa = PBXBuildFile; productRef = 4A4681C42E5908290012A316 /* CoreModels */; };
+/* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4AA8745B2E56B02C00939AD0 /* Full Scope Scheduler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Full Scope Scheduler.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -21,10 +25,9 @@
 /* Begin PBXFrameworksBuildPhase section */
 		4AA874582E56B02C00939AD0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
+				4A4681C52E5908290012A316 /* CoreModels in Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
@@ -58,13 +61,12 @@
 			);
 			buildRules = (
 			);
-			dependencies = (
-			);
 			fileSystemSynchronizedGroups = (
 				4AA8745D2E56B02C00939AD0 /* Full Scope Scheduler */,
 			);
 			name = "Full Scope Scheduler";
 			packageProductDependencies = (
+				4A4681C42E5908290012A316 /* CoreModels */,
 			);
 			productName = "Full Scope Scheduler";
 			productReference = 4AA8745B2E56B02C00939AD0 /* Full Scope Scheduler.app */;
@@ -78,7 +80,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1640;
-				LastUpgradeCheck = 1640;
+				LastUpgradeCheck = 2600;
 				TargetAttributes = {
 					4AA8745A2E56B02C00939AD0 = {
 						CreatedOnToolsVersion = 16.4;
@@ -94,7 +96,10 @@
 			);
 			mainGroup = 4AA874522E56B02C00939AD0;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
+			packageReferences = (
+				4A4681C32E5908290012A316 /* XCLocalSwiftPackageReference "../Packages/CoreModels" */,
+			);
+			preferredProjectObjectVersion = 90;
 			productRefGroup = 4AA8745C2E56B02C00939AD0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -107,25 +112,21 @@
 /* Begin PBXResourcesBuildPhase section */
 		4AA874592E56B02C00939AD0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4AA874572E56B02C00939AD0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		4AA874672E56B02D00939AD0 /* Debug */ = {
+		4AA874672E56B02D00939AD0 /* Debug configuration for PBXProject "Full Scope Scheduler" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -159,6 +160,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -183,12 +185,13 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		4AA874682E56B02D00939AD0 /* Release */ = {
+		4AA874682E56B02D00939AD0 /* Release configuration for PBXProject "Full Scope Scheduler" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -222,6 +225,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -239,64 +243,101 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 			};
 			name = Release;
 		};
-		4AA8746A2E56B02D00939AD0 /* Debug */ = {
+		4AA8746A2E56B02D00939AD0 /* Debug configuration for PBXNativeTarget "Full Scope Scheduler" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				AUTOMATION_APPLE_EVENTS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Full Scope Scheduler/Full_Scope_Scheduler.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_HEADERS_RUN_UNIFDEF = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = YES;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = YES;
+				ENABLE_RESOURCE_ACCESS_LOCATION = YES;
+				ENABLE_RESOURCE_ACCESS_PHOTO_LIBRARY = NO;
+				ENABLE_USER_SELECTED_FILES = readwrite;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ryan-champion.Full-Scope-Scheduler";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
+				RUNTIME_EXCEPTION_ALLOW_DYLD_ENVIRONMENT_VARIABLES = NO;
+				RUNTIME_EXCEPTION_ALLOW_JIT = NO;
+				RUNTIME_EXCEPTION_ALLOW_UNSIGNED_EXECUTABLE_MEMORY = NO;
+				RUNTIME_EXCEPTION_DEBUGGING_TOOL = NO;
+				RUNTIME_EXCEPTION_DISABLE_EXECUTABLE_PAGE_PROTECTION = NO;
+				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				WATCHOS_DEPLOYMENT_TARGET = 11.0;
 			};
 			name = Debug;
 		};
-		4AA8746B2E56B02D00939AD0 /* Release */ = {
+		4AA8746B2E56B02D00939AD0 /* Release configuration for PBXNativeTarget "Full Scope Scheduler" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				AUTOMATION_APPLE_EVENTS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Full Scope Scheduler/Full_Scope_Scheduler.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_HEADERS_RUN_UNIFDEF = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = YES;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = YES;
+				ENABLE_RESOURCE_ACCESS_LOCATION = YES;
+				ENABLE_RESOURCE_ACCESS_PHOTO_LIBRARY = NO;
+				ENABLE_USER_SELECTED_FILES = readwrite;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ryan-champion.Full-Scope-Scheduler";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
+				RUNTIME_EXCEPTION_ALLOW_DYLD_ENVIRONMENT_VARIABLES = NO;
+				RUNTIME_EXCEPTION_ALLOW_JIT = NO;
+				RUNTIME_EXCEPTION_ALLOW_UNSIGNED_EXECUTABLE_MEMORY = NO;
+				RUNTIME_EXCEPTION_DEBUGGING_TOOL = NO;
+				RUNTIME_EXCEPTION_DISABLE_EXECUTABLE_PAGE_PROTECTION = NO;
+				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				WATCHOS_DEPLOYMENT_TARGET = 11.0;
 			};
 			name = Release;
@@ -307,22 +348,34 @@
 		4AA874562E56B02C00939AD0 /* Build configuration list for PBXProject "Full Scope Scheduler" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				4AA874672E56B02D00939AD0 /* Debug */,
-				4AA874682E56B02D00939AD0 /* Release */,
+				4AA874672E56B02D00939AD0 /* Debug configuration for PBXProject "Full Scope Scheduler" */,
+				4AA874682E56B02D00939AD0 /* Release configuration for PBXProject "Full Scope Scheduler" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		4AA874692E56B02D00939AD0 /* Build configuration list for PBXNativeTarget "Full Scope Scheduler" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				4AA8746A2E56B02D00939AD0 /* Debug */,
-				4AA8746B2E56B02D00939AD0 /* Release */,
+				4AA8746A2E56B02D00939AD0 /* Debug configuration for PBXNativeTarget "Full Scope Scheduler" */,
+				4AA8746B2E56B02D00939AD0 /* Release configuration for PBXNativeTarget "Full Scope Scheduler" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		4A4681C32E5908290012A316 /* XCLocalSwiftPackageReference "../Packages/CoreModels" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../Packages/CoreModels;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4A4681C42E5908290012A316 /* CoreModels */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CoreModels;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4AA874532E56B02C00939AD0 /* Project object */;
 }

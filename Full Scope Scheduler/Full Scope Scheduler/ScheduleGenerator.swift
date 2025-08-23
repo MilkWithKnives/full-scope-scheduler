@@ -1,4 +1,5 @@
 import Foundation
+import CoreModels
 
 struct ScheduleGenerator {
     let employees: [Employee]
